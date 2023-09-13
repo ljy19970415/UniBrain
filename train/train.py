@@ -20,8 +20,8 @@ from tensorboardX import SummaryWriter
 import utils
 from scheduler import create_scheduler
 from optim.optim_factory_kad import create_optimizer
-from dataset.dataset import MedKLIP_Dataset
-from models.model_MedKLIP_before_fuse import MedKLIP as MedKLIP
+from dataset.dataset import MRI_Dataset
+from models.model import UniBrain as UniBrain
 from models.before_fuse import *
 
 from models.tokenization_bert import BertTokenizer
@@ -223,7 +223,7 @@ def train(model, image_encoder, text_encoder, fuseModule, tokenizer, data_loader
         loss_clip = clip_loss(image_features_pool, entity_features, entity_labels) # 4 b d; 4 b d; 4 b b
 
         loss_ce_ratio = config['ce_loss_ratio'] if 'ce_loss_ratio' in config else 1
-        loss = loss_ce * loss_ce_ratio + loss_clip * config['kad_loss_ratio']
+        loss = loss_ce * loss_ce_ratio + loss_clip
 
         tensorboard["pred"] = torch.cat((tensorboard["pred"], pred_class), 0)
         tensorboard["train_loss"].append(loss.item())
@@ -339,7 +339,7 @@ def valid(model, image_encoder, text_encoder, fuseModule, tokenizer, data_loader
             loss_clip = clip_loss(image_features_pool, entity_features, entity_labels) # 4 b d; 4 b d; 4 b b
     
             loss_ce_ratio = config['ce_loss_ratio'] if 'ce_loss_ratio' in config else 1
-            loss = loss_ce * loss_ce_ratio + loss_clip * config['kad_loss_ratio']
+            loss = loss_ce * loss_ce_ratio + loss_clip
 
             
             # pred_class = pred_class[:,:,0]
@@ -371,7 +371,7 @@ def main(args, config):
     print("valid file",config['valid_file'])
     augment = True if 'augment' in config and config['augment'] else False
     mask_modal = config['mask_modal'] if 'mask_modal' in config else ""
-    train_datasets = MedKLIP_Dataset(config['train_file'],config['label_file'],config['report_observe'], mode = 'train', augmentation=augment,mask_modal=mask_modal)
+    train_datasets = MRI_Dataset(config['train_file'],config['label_file'],config['report_observe'], mode = 'train', augmentation=augment,mask_modal=mask_modal)
     train_sampler = UniformSampler(train_datasets,config['batch_size'],batch_clas_num=8) if 'uniform_sample' in config and config['uniform_sample'] else None
     shuffle = False if 'uniform_sample' in config and config['uniform_sample'] else True
     train_dataloader = DataLoader(
@@ -385,7 +385,7 @@ def main(args, config):
             drop_last=True,
         )     
     
-    val_datasets = MedKLIP_Dataset(config['valid_file'],config['label_file'],config['report_observe'],mode ='train',mask_modal=mask_modal)
+    val_datasets = MRI_Dataset(config['valid_file'],config['label_file'],config['report_observe'],mode ='train',mask_modal=mask_modal)
     val_dataloader = DataLoader(
             val_datasets,
             batch_size=config['batch_size'],
@@ -405,7 +405,7 @@ def main(args, config):
 
     text_encoder = _get_bert_basemodel(config['text_encoder']).to(device)
 
-    model = MedKLIP(config)
+    model = UniBrain(config)
     
     fuseModule = beforeFuse(config).to(device) # before fusion
 

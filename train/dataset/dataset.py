@@ -20,7 +20,7 @@ def nib_load(file_name, component):
     proxy.uncache()
     return data
 
-class MedKLIP_Dataset(Dataset):
+class MRI_Dataset(Dataset):
     def __init__(self, csv_path, np_path, report_observe, mode = 'train', augmentation=False, only_global=False,mask_modal=""):
         self.ann = json.load(open(csv_path,'r'))
         self.fid_list = list(self.ann)

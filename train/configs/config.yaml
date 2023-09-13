@@ -1,12 +1,12 @@
-disease_book: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/dis_description.json
-disease_order: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/dis_order.json
-label_file: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/label.npy
-anatomy_order: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/anatomy_order.json
-report_observe: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/report_observe_fuse_global.npy
-test_file: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/test_data_path.json
+disease_book: /path/to/dis_description.json
+disease_order: /path/to/dis_order.json
+label_file: /path/to/label.npy
+anatomy_order: /path/to/anatomy_order.json
+report_observe: /path/to/report_observe_fuse_global.npy
+test_file: /path/to/test_data_path.json
 text_encoder: xmcmic/Med-KEBERT
-train_file: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/train_data_path.json
-valid_file: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/val_data_path.json
+train_file: /path/to/train_data_path.json
+valid_file: /path/to/val_data_path.json
 
 test_batch_size: 16
 batch_size: 16
@@ -16,16 +16,13 @@ augment: True
 optimizer: {opt: adam, lr: 2e-4, weight_decay: 1e-5, amsgrad: True}
 schedular: {sched: poly, lr: 2e-4, power: 0.9, epochs: 100}
 
-kad: true
-kad_loss_ratio: 1
-no_cl: true
 
 attribute_set_size: 1
 
 res_base_model: resnet34
 model_depth: 34
 model_type: resnet
-pretrain_path: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP/models/pretrained_weights/resnet_34.pth
+pretrain_path: /pretrained_weights/resnet_34.pth
 resnet_shortcut: B
 
 4_image_encoder: false
@@ -35,7 +32,6 @@ alpha: 0.4
 
 attention: false
 
-class_p: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP/data_file/class_p.json
 conv1_t_size: 7
 conv1_t_stride: 1
 d_model: 768

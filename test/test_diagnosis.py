@@ -6,19 +6,17 @@ import json
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
+
 from torch.utils.data import DataLoader
 from sklearn.metrics import roc_auc_score,precision_recall_curve,accuracy_score,confusion_matrix,average_precision_score
 
-# from models.model_MedKLIP import MedKLIP
-from models.model_MedKLIP_before_fuse import MedKLIP as MedKLIP
-from dataset.dataset import MedKLIP_Dataset
+from models.model import UniBrain as UniBrain
+from dataset.dataset import MRI_Dataset
 from models.tokenization_bert import BertTokenizer
 from transformers import AutoModel
 from models.imageEncoder import ModelRes
 from models.before_fuse import *
 
-import tqdm
 import os
 from utils import plot_auc_pr, check_pred
 
@@ -78,7 +76,7 @@ def test(args,config):
     torch.set_default_tensor_type('torch.FloatTensor')
 
     file_key = args.mode+'_file'
-    test_dataset =  MedKLIP_Dataset(config[file_key],config['label_file']) 
+    test_dataset =  MRI_Dataset(config[file_key],config['label_file']) 
     test_dataloader = DataLoader(
             test_dataset,
             batch_size=config['test_batch_size'],
@@ -111,7 +109,7 @@ def test(args,config):
     fuseModule = beforeFuse(config).to(device) # before fusion
     
     print("Creating model")
-    model = MedKLIP(config)
+    model = UniBrain(config)
 
     model = nn.DataParallel(model, device_ids = [i for i in range(torch.cuda.device_count())])
     model = model.to(device)

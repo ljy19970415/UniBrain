@@ -13,10 +13,9 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from skimage import io
 
-# from models.model_MedKLIP import MedKLIP
-from models.model_MedKLIP_before_fuse import MedKLIP as MedKLIP 
-from models.model_MedKLIP_14class_before_fuse import MedKLIP as MedKLIP_14
-from dataset.dataset import MedKLIP_Vis_Dataset as MedKLIP_Dataset
+from models.model import UniBrain as UniBrain
+
+from dataset.dataset import MRI_Vis_Dataset as MRI_Dataset
 from dataset.augment import *
 from models.tokenization_bert import BertTokenizer
 from transformers import AutoModel
@@ -69,7 +68,7 @@ def test(args,config,keep_largest_mask = True):
     #         if d.startswith("a"):
     #             fid_ex.add(d)
 
-    test_dataset =  MedKLIP_Dataset(config[file_key],config['label_file'],fid_ex) 
+    test_dataset =  MRI_Dataset(config[file_key],config['label_file'],fid_ex) 
     test_dataloader = DataLoader(
             test_dataset,
             batch_size=config['test_batch_size'],
@@ -108,12 +107,8 @@ def test(args,config,keep_largest_mask = True):
     fuseModule = beforeFuse(config).to(device) # before fusion
     
     print("Creating model")
-    if config['seperate_classifier']:
-        print("Medklip_14")
-        model = MedKLIP_14(config)
-    else:
-        print("medklip")
-        model = MedKLIP(config)
+
+    model = UniBrain(config)
 
     model = nn.DataParallel(model, device_ids = [i for i in range(torch.cuda.device_count())])
     model = model.to(device)
@@ -222,13 +217,11 @@ def test(args,config,keep_largest_mask = True):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    # /home/ps/leijiayu/CODE/MedKLIP/Test_Set_Classification_6thself/configs/config_visualize_lisong_myarch_external.yaml
-    # /home/ps/leijiayu/CODE/MedKLIP/Test_Set_Classification_6thself/configs/config_visualize_lisong_myarch.yaml
-    parser.add_argument('--config', default='/home/ps/leijiayu/CODE/MedKLIP/Test_Set_Classification_6thself/configs/config_visualize_jiayu_show.yaml')
-    parser.add_argument('--model_path', default='/home/ps/leijiayu/CODE/MedKLIP/outputdir_34_kad_sc_glrep_lesscls_beforefuse_modalwise_fusewise_nocl_transbts_aug_wosc/best_val.pth')
-    parser.add_argument('--output_dir', default='/home/ps/leijiayu/jiayu_local_show')
+    parser.add_argument('--config', default='./configs/config_visualize_jiayu_show.yaml')
+    parser.add_argument('--model_path', default='./pretrained_weights/best_val.pth')
+    parser.add_argument('--output_dir', default='./grounding_output')
     parser.add_argument('--device', default='cuda')
-    parser.add_argument('--gpu', type=str,default='4,5', help='gpu')
+    parser.add_argument('--gpu', type=str,default='0,1,2,3', help='gpu')
     parser.add_argument('--mode', type=str,default='test')
     args = parser.parse_args()
 
