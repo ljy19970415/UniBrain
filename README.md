@@ -1,3 +1,2 @@
-# UniBrain: Universal Brain MRI Diagnosis with  Hierarchical Knowledge-enhanced Pre-training
-
+# HEP: Hierarchical Knowledge-Enhanced Pre-training for Brain MRI Diagnosis
 More details will be reviewed after acceptance.
