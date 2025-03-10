@@ -1,0 +1,82 @@
+{
+    "site1_547": {
+        "DWI": "example/site1_547/DWI.nii.gz",
+        "T1WI": "example/site1_547/T1WI.nii.gz",
+        "T2WI": "example/site1_547/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_547/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    },
+    "site1_575": {
+        "DWI": "example/site1_575/DWI.nii.gz",
+        "T1WI": "example/site1_575/T1WI.nii.gz",
+        "T2WI": "example/site1_575/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_575/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    },
+    "site1_058": {
+        "DWI": "example/site1_058/DWI.nii.gz",
+        "T1WI": "example/site1_058/T1WI.nii.gz",
+        "T2WI": "example/site1_058/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_058/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    },
+    "site1_144": {
+        "DWI": "example/site1_144/DWI.nii.gz",
+        "T1WI": "example/site1_144/T1WI.nii.gz",
+        "T2WI": "example/site1_144/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_144/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    },
+    "site1_281": {
+        "DWI": "example/site1_281/DWI.nii.gz",
+        "T1WI": "example/site1_281/T1WI.nii.gz",
+        "T2WI": "example/site1_281/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_281/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    },
+    "site1_456": {
+        "DWI": "example/site1_456/DWI.nii.gz",
+        "T1WI": "example/site1_456/T1WI.nii.gz",
+        "T2WI": "example/site1_456/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_456/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    },
+    "site1_482": {
+        "DWI": "example/site1_482/DWI.nii.gz",
+        "T1WI": "example/site1_482/T1WI.nii.gz",
+        "T2WI": "example/site1_482/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_482/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    },
+    "site1_477": {
+        "DWI": "example/site1_477/DWI.nii.gz",
+        "T1WI": "example/site1_477/T1WI.nii.gz",
+        "T2WI": "example/site1_477/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_477/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    },
+    "site1_466": {
+        "DWI": "example/site1_466/DWI.nii.gz",
+        "T1WI": "example/site1_466/T1WI.nii.gz",
+        "T2WI": "example/site1_466/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_466/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    },
+    "site1_065": {
+        "DWI": "example/site1_065/DWI.nii.gz",
+        "T1WI": "example/site1_065/T1WI.nii.gz",
+        "T2WI": "example/site1_065/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_065/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    }
+}

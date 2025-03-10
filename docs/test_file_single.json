@@ -1,0 +1,10 @@
+{
+    "site1_547": {
+        "DWI": "example/site1_547/DWI.nii.gz",
+        "T1WI": "example/site1_547/T1WI.nii.gz",
+        "T2WI": "example/site1_547/T2WI.nii.gz",
+        "T2FLAIR": "example/site1_547/T2FLAIR.nii.gz",
+        "component": 1,
+        "labels_id": 0
+    }
+}

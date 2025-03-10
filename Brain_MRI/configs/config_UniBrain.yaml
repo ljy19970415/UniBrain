@@ -1,0 +1,58 @@
+4_image_encoder: false
+H: 4
+N: 4
+alpha: 0.4
+anatomy_order: Brain_MRI/configs/anatomy_order.json
+pretrain_weight: Brain_MRI/weights/best_val.pth
+text_encoder: Brain_MRI/weights/kebert
+attention: false
+attribute_set_size: 1
+augment: true
+batch_size: 16
+conv1_t_size: 7
+conv1_t_stride: 1
+d_model: 768
+disease_book: Brain_MRI/configs/dis_description.json
+disease_order: Brain_MRI/configs/dis_order.json
+dropout: 0.1
+exclude_class: false
+fea_width: 197
+gpu_id: [0]
+image_res: 224
+in_channels: 1
+input_D: 16
+input_H: 224
+input_W: 224
+kad: true
+kad_loss_ratio: 1
+la: false
+la_alpha: 1
+# label_file: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/label.npy
+# label_file: /mnt/petrelfs/leijiayu/UniBrain/train/data_file_more_label/label.npy
+label_file: Brain_MRI/configs/label1.npy
+mlm_probability: 0.15
+model_depth: 34
+model_type: resnet
+momentum: 0.995
+no_cl: true
+no_cuda: false
+no_max_pool: false
+num_classes: 13
+num_queries: 75
+num_sentences: 12
+num_tokens: 32
+optimizer: {amsgrad: true, lr: 0.0002, opt: adam, weight_decay: 1e-05}
+out_feature: 768
+patch_size: 16
+queue_size: 8192
+# report_observe: /home/ps/leijiayu/CODE/MedKLIP/Pretrain_MedKLIP_bce/data_file_more_label/report_observe_fuse_global.npy
+report_observe: Brain_MRI/train/data_file_more_label/report_observe_fuse_global.npy
+res_base_model: resnet34
+resnet_shortcut: B
+schedular: {epochs: 100, lr: 0.0002, power: 0.9, sched: poly}
+seperate_classifier: false
+shuffle_ratio: 0.5
+temp: 0.07
+test_batch_size: 1
+test_file: Brain_MRI/test_jiayu/test_data1_site1.json
+vision_width: 768
